@@ -833,6 +833,53 @@ section { padding: var(--s7) 0; }
   resize: vertical;
   min-height: 100px;
 }
+.form-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ink-mid);
+  letter-spacing: 0.02em;
+}
+.form-label .required {
+  color: var(--teal);
+  margin-left: 2px;
+}
+.form-hint {
+  font-size: 0.72rem;
+  color: var(--ink-light);
+  margin-top: -2px;
+}
+.service-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.service-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--ink);
+  transition: border-color 0.15s, background 0.15s;
+}
+.service-option:hover {
+  border-color: var(--teal-light);
+  background: var(--teal-faint);
+}
+.service-option input {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  accent-color: var(--teal);
+  cursor: pointer;
+}
+.service-option:has(input:checked) {
+  border-color: var(--teal);
+  background: var(--teal-faint);
+}
 .inquiry-submit {
   margin-top: var(--s1);
   padding: 14px;
@@ -1417,15 +1464,38 @@ section { padding: var(--s7) 0; }
         <input type="email" id="email" name="email" required placeholder="contact@company.com">
       </div>
       <div class="form-group">
-        <label for="service">관심 서비스 <span class="required">*</span></label>
-        <select id="service" name="service" required>
-          <option value="">선택해 주세요</option>
-          <option value="미국 아마존 FBA 물류">미국 아마존 FBA 물류</option>
-          <option value="미국 CA 3PL 서비스">미국 CA 3PL 서비스</option>
-          <option value="식품 FSVP 서비스">식품 FSVP 서비스</option>
-          <option value="멕시코 물류 서비스">멕시코 물류 서비스</option>
-          <option value="무료 물류 컨설팅 신청">무료 물류 컨설팅 신청</option>
-        </select>
+        <span class="form-label">관심 서비스 <span class="required">*</span></span>
+        <p class="form-hint">복수 선택 가능</p>
+        <div class="service-options" id="serviceOptions">
+          <label class="service-option">
+            <input type="checkbox" name="service" value="미국 아마존 FBA 물류">
+            <span>미국 아마존 FBA 물류</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="service" value="미국 LCL 해상 운송">
+            <span>미국 LCL 해상 운송</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="service" value="미국 항공 특송">
+            <span>미국 항공 특송</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="service" value="미국 CA 3PL 서비스">
+            <span>미국 CA 3PL 서비스</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="service" value="식품 FSVP 서비스">
+            <span>식품 FSVP 서비스</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="service" value="멕시코 물류 서비스">
+            <span>멕시코 물류 서비스</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="service" value="무료 물류 컨설팅 신청">
+            <span>무료 물류 컨설팅 신청</span>
+          </label>
+        </div>
       </div>
       <div class="form-group">
         <label for="product">품목 <span style="font-weight: 400; color: var(--ink-light);">(HS 코드 알면 입력 · 선택)</span></label>
@@ -1497,12 +1567,18 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
+  const services = [...form.querySelectorAll('input[name="service"]:checked')].map(el => el.value);
+  if (services.length === 0) {
+    showStatus('관심 서비스를 하나 이상 선택해 주세요.', 'error');
+    return;
+  }
+
   const payload = {
     company: form.company.value.trim(),
     contact: form.contact.value.trim(),
     phone: form.phone.value.trim(),
     email: form.email.value.trim(),
-    service: form.service.value,
+    service: services.join(', '),
     product: form.product.value.trim(),
     message: form.message.value.trim()
   };
