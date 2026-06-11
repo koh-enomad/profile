@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENOMAD KOREA · Company Profile 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS — 수정 포인트 ①
+   색상/폰트/간격을 여기서 한 번에 관리합니다
+   ============================================================ */
+:root {
+  /* Brand Colors */
+  --teal:        #3B9CAD;
+  --teal-dark:   #2a7a8a;
+  --teal-light:  #d0eef2;
+  --teal-faint:  #f0f9fb;
+  --ink:         #0f1e22;
+  --ink-mid:     #374649;
+  --ink-light:   #6b8285;
+  --paper:       #ffffff;
+  --paper-warm:  #f7fafb;
+  --rule:        #dce8ea;
+
+  /* Typography */
+  --font-display: 'Bebas Neue', 'DM Mono', monospace;
+  --font-body:    'Noto Sans KR', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+
+  /* Spacing scale */
+  --s1: 0.5rem;   --s2: 1rem;     --s3: 1.5rem;
+  --s4: 2rem;     --s5: 3rem;     --s6: 5rem;
+  --s7: 8rem;
+
+  /* Layout */
+  --max-w: 1100px;
+  --col-gap: 2.5rem;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.7;
+  font-size: 15px;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--s4);
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--col-gap); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  padding: var(--s2) 0;
+}
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--s4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+}
+.nav-logo span { color: var(--ink); }
+.nav-links {
+  display: flex; gap: var(--s4); list-style: none;
+  font-size: 0.8rem; letter-spacing: 0.08em; font-weight: 500;
+}
+.nav-links a:hover { color: var(--teal); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero {
+  padding-top: 80px;
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  background: var(--ink);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+/* 배경 수평선 패턴 */
+#hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 59px,
+      rgba(59,156,173,0.06) 60px
+    );
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--s6) var(--s4);
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--teal);
+  margin-bottom: var(--s3);
+  text-transform: uppercase;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  margin-bottom: var(--s4);
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--teal);
+  display: block;
+}
+.hero-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.55);
+  max-width: 480px;
+  line-height: 1.8;
+  margin-bottom: var(--s5);
+}
+.hero-sub strong {
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+}
+/* 핵심 수치 */
+.hero-stats {
+  display: flex; gap: var(--s5); flex-wrap: wrap;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: var(--s4);
+}
+.stat-item {}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--teal);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.45);
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+/* 스크롤 힌트 */
+.scroll-hint {
+  position: absolute; bottom: var(--s4); left: 50%; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 0.15em; color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.scroll-hint::after {
+  content: '';
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, rgba(59,156,173,0.5), transparent);
+  animation: scrollLine 1.5s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.1); }
+}
+
+/* ============================================================
+   SECTION BASE
+   ============================================================ */
+section { padding: var(--s7) 0; }
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: var(--s2);
+}
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: var(--s2);
+}
+.section-desc {
+  color: var(--ink-light);
+  max-width: 560px;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   PROLOGUE / PAIN POINTS
+   ============================================================ */
+#prologue { background: var(--paper-warm); }
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: var(--s5);
+}
+.pain-item {
+  background: var(--paper);
+  padding: var(--s4);
+}
+.pain-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--s2);
+}
+.pain-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: var(--s1);
+}
+.pain-desc { font-size: 0.85rem; color: var(--ink-light); }
+
+/* ============================================================
+   JOURNEY / 4 STAGES
+   ============================================================ */
+#journey { background: var(--paper); }
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: var(--s5);
+}
+.stage-card {
+  padding: var(--s4) var(--s3);
+  border-right: 1px solid var(--rule);
+  position: relative;
+}
+.stage-card:last-child { border-right: none; }
+.stage-card.highlight { background: var(--ink); color: var(--paper); }
+.stage-num {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--teal-light);
+  line-height: 1;
+  margin-bottom: var(--s2);
+}
+.stage-card.highlight .stage-num { color: var(--teal); }
+.stage-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: var(--teal-faint);
+  color: var(--teal);
+  margin-bottom: var(--s2);
+  text-transform: uppercase;
+}
+.stage-card.highlight .stage-badge {
+  background: rgba(59,156,173,0.2);
+  color: var(--teal);
+}
+.stage-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--s2);
+}
+.stage-bullets {
+  list-style: none;
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.stage-card.highlight .stage-bullets { color: rgba(255,255,255,0.55); }
+.stage-bullets li::before {
+  content: '→ ';
+  color: var(--teal);
+  font-weight: 500;
+}
+.stage-location {
+  margin-top: var(--s3);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink-light);
+  letter-spacing: 0.08em;
+}
+.stage-card.highlight .stage-location { color: rgba(255,255,255,0.3); }
+
+/* ============================================================
+   EDGE — 멕시코 7일
+   ============================================================ */
+#edge {
+  background: var(--ink);
+  color: var(--paper);
+}
+.edge-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s6);
+  align-items: start;
+}
+.edge-big {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 14vw, 12rem);
+  line-height: 0.85;
+  color: var(--teal);
+  letter-spacing: -0.01em;
+}
+.edge-big span {
+  display: block;
+  font-size: 1.8rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.06em;
+  margin-top: 0.3rem;
+}
+.vs-table { margin-top: var(--s4); }
+.vs-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: var(--s2) 0;
+  font-size: 0.82rem;
+}
+.vs-row:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+.vs-bad { color: rgba(255,255,255,0.35); }
+.vs-bad::before { content: '✕  '; color: #c0392b; }
+.vs-good { color: rgba(255,255,255,0.75); }
+.vs-good::before { content: '✓  '; color: var(--teal); }
+.vs-label {
+  display: flex; gap: var(--s3); align-items: center;
+  padding-bottom: var(--s1);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: var(--s1);
+}
+.vs-co {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-light);
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.vs-co.enomad { background: rgba(59,156,173,0.15); color: var(--teal); }
+.vs-co.other { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.3); }
+
+/* ============================================================
+   SOP STEPS
+   ============================================================ */
+.sop-steps {
+  display: flex;
+  gap: 0;
+  margin-top: var(--s4);
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.sop-step {
+  flex: 1;
+  padding: var(--s3) var(--s2);
+  border-right: 1px solid rgba(255,255,255,0.07);
+  text-align: center;
+}
+.sop-step:last-child { border-right: none; }
+.sop-icon { font-size: 1.4rem; margin-bottom: 6px; }
+.sop-num {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+.sop-name {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+}
+
+/* ============================================================
+   MIAMI FTZ
+   ============================================================ */
+#miami { background: var(--paper-warm); }
+.ftz-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: var(--s5);
+}
+.ftz-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: var(--s4);
+}
+.ftz-icon { font-size: 1.8rem; margin-bottom: var(--s2); }
+.ftz-title { font-size: 1rem; font-weight: 700; margin-bottom: var(--s1); }
+.ftz-desc { font-size: 0.83rem; color: var(--ink-light); margin-bottom: var(--s2); }
+.ftz-vs {
+  font-size: 0.75rem;
+  color: var(--ink-light);
+  padding-top: var(--s2);
+  border-top: 1px solid var(--rule);
+}
+.ftz-vs::before { content: '일반 창고: '; color: var(--ink-light); }
+
+/* ============================================================
+   EMERGING MARKETS
+   ============================================================ */
+#emerging { background: var(--paper); }
+.market-highlight {
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 12px;
+  padding: var(--s5);
+  margin-top: var(--s5);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--s5);
+  align-items: center;
+}
+.market-country {
+  text-align: center;
+}
+.market-flag { font-size: 4rem; }
+.market-name {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--teal);
+  letter-spacing: 0.05em;
+  margin-top: var(--s1);
+}
+.market-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s3);
+}
+.mstat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: var(--s3);
+}
+.mstat-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--teal);
+  line-height: 1;
+}
+.mstat-label {
+  font-size: 0.73rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+}
+.next-markets {
+  display: flex; gap: 0.75rem; flex-wrap: wrap;
+  margin-top: var(--s4);
+}
+.mkt-tag {
+  font-size: 0.8rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--rule);
+  color: var(--ink-mid);
+}
+
+/* ============================================================
+   CONSULTING
+   ============================================================ */
+#consulting { background: var(--paper-warm); }
+.consult-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s4);
+  margin-top: var(--s5);
+}
+.consult-card {
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: var(--s5);
+  background: var(--paper);
+}
+.consult-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: var(--s2); }
+.consult-card p { font-size: 0.85rem; color: var(--ink-light); }
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s3);
+  margin-top: var(--s5);
+  text-align: center;
+}
+.proc-step {
+  padding: var(--s3);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper);
+  position: relative;
+}
+.proc-icon { font-size: 1.5rem; margin-bottom: var(--s1); }
+.proc-step-name {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.proc-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 6px; }
+.proc-desc { font-size: 0.75rem; color: var(--ink-light); }
+
+/* ============================================================
+   WHY ENOMAD
+   ============================================================ */
+#why { background: var(--paper); }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s4);
+  margin-top: var(--s5);
+}
+.why-card {
+  border-top: 3px solid var(--teal);
+  padding-top: var(--s3);
+}
+.why-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: var(--s1); }
+.why-card p { font-size: 0.83rem; color: var(--ink-light); }
+.kpi-band {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: var(--s5);
+}
+.kpi-item {
+  background: var(--paper);
+  padding: var(--s4);
+  text-align: center;
+}
+.kpi-num {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  color: var(--teal);
+  line-height: 1;
+}
+.kpi-unit { font-size: 1rem; }
+.kpi-label {
+  font-size: 0.72rem;
+  color: var(--ink-light);
+  margin-top: 6px;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+#contact {
+  background: var(--ink);
+  color: var(--paper);
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s6);
+  align-items: start;
+}
+.contact-title {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--s3);
+}
+.contact-title em {
+  font-style: normal;
+  color: var(--teal);
+}
+.contact-sub {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.8;
+}
+.contact-cards { display: flex; flex-direction: column; gap: var(--s3); }
+.contact-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: var(--s3) var(--s4);
+  display: flex;
+  gap: var(--s3);
+  align-items: center;
+}
+.contact-card-icon { font-size: 1.3rem; flex-shrink: 0; }
+.contact-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--teal);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.contact-card-val {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+}
+.footer-line {
+  margin-top: var(--s5);
+  padding-top: var(--s4);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.2);
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  section { padding: var(--s5) 0; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .journey-grid { grid-template-columns: 1fr 1fr; }
+  .edge-inner, .market-highlight, .contact-inner, .consult-grid { grid-template-columns: 1fr; }
+  .sop-steps { flex-wrap: wrap; }
+  .sop-step { flex: 0 0 50%; }
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .kpi-band { grid-template-columns: repeat(2, 1fr); }
+  .hero-title { font-size: 3.5rem; }
+  .pain-grid { grid-template-columns: 1fr; }
+  .ftz-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  nav { display: none; }
+}
+
+/* ============================================================
+   SCROLL ANIMATIONS (선택적)
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+   NAV
+   ============================================================ -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">ENOMAD <span>KOREA</span></div>
+    <ul class="nav-links">
+      <li><a href="#prologue">Overview</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#edge">Mexico Edge</a></li>
+      <li><a href="#miami">Miami FTZ</a></li>
+      <li><a href="#emerging">Markets</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================================================
+   HERO
+   ============================================================ -->
+<section id="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">2026 · Company Profile · Global Logistics</p>
+    <h1 class="hero-title">
+      FROM<br>
+      NORTH AMERICA
+      <em>TO LATAM</em>
+    </h1>
+    <p class="hero-sub">
+      북미 진입부터 중남미 확장, 신흥시장 선점까지.<br>
+      <strong>기업의 성장 여정을 함께하는 단 하나의 물류 파트너.</strong>
+    </p>
+
+    <!-- ============================================================
+       HERO STATS — 수정 포인트 ②: 핵심 수치 수정
+       ============================================================ -->
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">7<span style="font-size:1.5rem">Days</span></div>
+        <div class="stat-label">한국 → 멕시코 리드타임</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">글로벌 허브 (CA · MIA · CDMX)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100<span style="font-size:1.5rem">+</span></div>
+        <div class="stat-label">진출 지원 가능 국가</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">0<span style="font-size:1.5rem">%</span></div>
+        <div class="stat-label">FBA 입고 거절률 목표</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</section>
+
+<!-- ============================================================
+   PROLOGUE
+   ============================================================ -->
+<section id="prologue">
+  <div class="container">
+    <p class="section-eyebrow">Prologue</p>
+    <h2 class="section-title">수출은 시작했습니다.<br>그런데, 그 다음은요?</h2>
+    <p class="section-desc">많은 한국 기업들이 북미 시장 진입에는 성공합니다. 하지만 거점화·중남미 확장·신흥시장 선점에서 대부분 같은 벽에 부딪힙니다.</p>
+
+    <!-- ============================================================
+       PAIN POINTS — 수정 포인트 ③: Pain point 수정
+       ============================================================ -->
+    <div class="pain-grid reveal">
+      <div class="pain-item">
+        <p class="pain-num">PAIN 01</p>
+        <p class="pain-title">FBA 입고가 자꾸 거절됩니다</p>
+        <p class="pain-desc">규격 위반·라벨 오류로 반복되는 패널티</p>
+      </div>
+      <div class="pain-item">
+        <p class="pain-num">PAIN 02</p>
+        <p class="pain-title">재고 회전이 안 됩니다</p>
+        <p class="pain-desc">관세·창고비가 운전자금을 잠식</p>
+      </div>
+      <div class="pain-item">
+        <p class="pain-num">PAIN 03</p>
+        <p class="pain-title">중남미는 너무 멉니다</p>
+        <p class="pain-desc">통관·언어·환율 — 진입장벽 3중고</p>
+      </div>
+      <div class="pain-item">
+        <p class="pain-num">PAIN 04</p>
+        <p class="pain-title">파트너가 너무 많습니다</p>
+        <p class="pain-desc">통관사·창고·운송사 — 책임 소재가 분산</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+   JOURNEY — 4 STAGES
+   ============================================================ -->
+<section id="journey">
+  <div class="container">
+    <p class="section-eyebrow">The Journey · 4-Stage Growth</p>
+    <h2 class="section-title">기업의 성장에 맞춰, 4단계로</h2>
+    <p class="section-desc">이노마드는 고객의 현재 단계를 진단하고, 다음 단계까지의 물류 인프라를 함께 설계합니다.</p>
+
+    <!-- ============================================================
+       STAGES — 수정 포인트 ④: 각 스테이지 내용 수정
+       ============================================================ -->
+    <div class="journey-grid reveal">
+      <div class="stage-card">
+        <div class="stage-num">01</div>
+        <span class="stage-badge">Entry</span>
+        <p class="stage-title">북미 시장 진입</p>
+        <ul class="stage-bullets">
+          <li>Amazon US FBA</li>
+          <li>화장품·식품 FSVP 대응</li>
+          <li>FBA 입고 SOP 준수</li>
+          <li>규격·라벨 사전 검수</li>
+        </ul>
+        <p class="stage-location">📍 CA Vernon · 3PL</p>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">02</div>
+        <span class="stage-badge">Hub</span>
+        <p class="stage-title">북미 거점 구축</p>
+        <ul class="stage-bullets">
+          <li>Miami FTZ 통합 허브</li>
+          <li>관세 유예 + 장기 보관</li>
+          <li>SKU별 재포장·라벨링</li>
+          <li>FBA 리오더 효율화</li>
+        </ul>
+        <p class="stage-location">📍 Miami FTZ · CBP</p>
+      </div>
+      <div class="stage-card highlight">
+        <div class="stage-num">03</div>
+        <span class="stage-badge">★ CORE EDGE</span>
+        <p class="stage-title">중남미 확장</p>
+        <ul class="stage-bullets">
+          <li>멕시코 7일 급행 · 핵심 차별점</li>
+          <li>현지법인 정식 통관</li>
+          <li>Amazon MX FBA</li>
+          <li>3PL 풀필먼트</li>
+        </ul>
+        <p class="stage-location">📍 멕시코 시티 CDMX</p>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">04</div>
+        <span class="stage-badge">Frontier</span>
+        <p class="stage-title">신흥시장 선점</p>
+        <ul class="stage-bullets">
+          <li>남아공·UAE·동남아</li>
+          <li>초기 시장 진입 대행</li>
+          <li>현지 규제·라벨 대응</li>
+          <li>멀티채널 (FBA + Local)</li>
+        </ul>
+        <p class="stage-location">📍 차세대 이커머스 시장</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+   EDGE — MEXICO EXPRESS
+   ============================================================ -->
+<section id="edge" style="background: var(--ink); color: var(--paper);">
+  <div class="container">
+    <p class="section-eyebrow" style="color: var(--teal);">★ Core Edge · Mexico Express</p>
+    <h2 class="section-title" style="color: var(--paper);">북미는 누구나 합니다.<br>중남미는 우리만 1주 안에 합니다.</h2>
+    <div class="edge-inner" style="margin-top: var(--s5);">
+      <div>
+        <div class="edge-big">7<span>DAYS<br>KR → MX</span></div>
+
+        <!-- SOP Steps -->
+        <div class="sop-steps" style="margin-top: var(--s4);">
+          <div class="sop-step">
+            <div class="sop-icon">📋</div>
+            <div class="sop-num">STEP 01</div>
+            <div class="sop-name">한국 픽업</div>
+          </div>
+          <div class="sop-step">
+            <div class="sop-icon">🛃</div>
+            <div class="sop-num">STEP 02</div>
+            <div class="sop-name">수출 통관</div>
+          </div>
+          <div class="sop-step" style="border: 1px solid rgba(59,156,173,0.3); border-radius: 6px;">
+            <div class="sop-icon">✈️</div>
+            <div class="sop-num" style="color: var(--teal);">CORE</div>
+            <div class="sop-name" style="color: rgba(255,255,255,0.9); font-weight: 700;">직항 운송</div>
+          </div>
+          <div class="sop-step">
+            <div class="sop-icon">📥</div>
+            <div class="sop-num">STEP 04</div>
+            <div class="sop-name">현지 통관</div>
+          </div>
+          <div class="sop-step">
+            <div class="sop-icon">🚚</div>
+            <div class="sop-num">STEP 05</div>
+            <div class="sop-name">FBA / 배송</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+         VS TABLE — 수정 포인트 ⑤: 비교 항목 수정
+         ============================================================ -->
+      <div>
+        <div class="vs-table">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-bottom: var(--s2);">
+            <div><span class="vs-co other">일반 물류 대행사</span></div>
+            <div><span class="vs-co enomad">이노마드 코리아</span></div>
+          </div>
+          <div class="vs-row">
+            <div class="vs-bad">미국까지만, 그 이후 고객 책임</div>
+            <div class="vs-good">한국 픽업 → 현지 배송 일관 관리</div>
+          </div>
+          <div class="vs-row">
+            <div class="vs-bad">3-4주 이상 일반 리드타임</div>
+            <div class="vs-good">7일 리드타임 — 시즌 대응 가능</div>
+          </div>
+          <div class="vs-row">
+            <div class="vs-bad">통관·창고·운송 책임 분산</div>
+            <div class="vs-good">단일 책임 운영</div>
+          </div>
+          <div class="vs-row">
+            <div class="vs-bad">FBA Mexico SOP 미숙지</div>
+            <div class="vs-good">Amazon MX 입고 SOP 내재화</div>
+          </div>
+          <div class="vs-row">
+            <div class="vs-bad">현지 파트너 별도 계약 필요</div>
+            <div class="vs-good">멕시코 자체 현지법인 운영</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+   MIAMI FTZ
+   ============================================================ -->
+<section id="miami">
+  <div class="container">
+    <p class="section-eyebrow">Stage 02 · Miami FTZ</p>
+    <h2 class="section-title">단순 창고가 아닌,<br>중남미로 가는 관문</h2>
+    <p class="section-desc">마이애미 자유무역지대(FTZ)는 관세 유예와 중남미 중계를 동시에 가능하게 합니다.</p>
+
+    <!-- ============================================================
+       FTZ BENEFITS — 수정 포인트 ⑥: FTZ 혜택 수정
+       ============================================================ -->
+    <div class="ftz-grid reveal">
+      <div class="ftz-card">
+        <div class="ftz-icon">💰</div>
+        <p class="ftz-title">관세 납부 유예</p>
+        <p class="ftz-desc">미국 도착 후에도 관세 납부를 유예해 운전자금을 효율화합니다.</p>
+        <p class="ftz-vs">입고 즉시 관세 납부</p>
+      </div>
+      <div class="ftz-card">
+        <div class="ftz-icon">🏬</div>
+        <p class="ftz-title">장기 보관 가능</p>
+        <p class="ftz-desc">시장 상황에 맞춰 재고를 유연하게 운영. 보존기한 제한이 없습니다.</p>
+        <p class="ftz-vs">보존기한 제한 있음</p>
+      </div>
+      <div class="ftz-card">
+        <div class="ftz-icon">🔒</div>
+        <p class="ftz-title">CBP 보안 통제</p>
+        <p class="ftz-desc">미국 세관 감독 환경 — 고가·민감 화물에 적합한 통제 수준.</p>
+        <p class="ftz-vs">외부 접근 자유</p>
+      </div>
+      <div class="ftz-card">
+        <div class="ftz-icon">🌎</div>
+        <p class="ftz-title">중남미 중계 거점</p>
+        <p class="ftz-desc">중남미 출고 시 미국 내수 관세 면제 — Stage 3 확장의 발판.</p>
+        <p class="ftz-vs">미국 내수 통관 필요</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+   EMERGING MARKETS
+   ============================================================ -->
+<section id="emerging">
+  <div class="container">
+    <p class="section-eyebrow">Stage 04 · Emerging Frontiers</p>
+    <h2 class="section-title">차세대 이커머스 시장 선점</h2>
+    <p class="section-desc">미주 운영이 안정되면, 다음은 차세대 이커머스 시장입니다. 아마존 신규 진입 국가와 한국 제품 친화 시장을 함께 분석·진입 대행합니다.</p>
+
+    <!-- ============================================================
+       MARKET SPOTLIGHT — 수정 포인트 ⑦: 중점 시장 수정
+       ============================================================ -->
+    <div class="market-highlight reveal">
+      <div class="market-country">
+        <div class="market-flag">🇿🇦</div>
+        <div class="market-name">SOUTH AFRICA</div>
+        <p style="font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 6px;">Amazon.co.za · 2026 Priority</p>
+      </div>
+      <div>
+        <div class="market-stats">
+          <div class="mstat">
+            <div class="mstat-num">$8억</div>
+            <div class="mstat-label">2024 이커머스 시장 규모</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-num">22%</div>
+            <div class="mstat-label">CAGR · 2029 ~$19억 전망</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-num">6,200만</div>
+            <div class="mstat-label">인구 · 인터넷 4,300만</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-num">70%</div>
+            <div class="mstat-label">모바일 쇼핑 비중</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Next Target Markets -->
+    <div class="next-markets" style="margin-top: var(--s4);">
+      <p style="font-size: 0.75rem; color: var(--ink-light); margin-right: 0.5rem; line-height: 2.2;">Next targets →</p>
+      <span class="mkt-tag">🇿🇦 남아공</span>
+      <span class="mkt-tag">🇧🇷 브라질</span>
+      <span class="mkt-tag">🇨🇱 칠레</span>
+      <span class="mkt-tag">🇨🇴 콜롬비아</span>
+      <span class="mkt-tag">🇦🇪 UAE</span>
+      <span class="mkt-tag">🇻🇳 베트남</span>
+      <span class="mkt-tag">🇮🇩 인도네시아</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+   CONSULTING
+   ============================================================ -->
+<section id="consulting">
+  <div class="container">
+    <p class="section-eyebrow">Beyond Logistics</p>
+    <h2 class="section-title">단순 운송을 넘어,<br>물류 전략 파트너로</h2>
+    <p class="section-desc">데이터 기반 분석과 벤치마크로 최적의 솔루션을 설계합니다.</p>
+
+    <div class="consult-grid reveal">
+      <div class="consult-card">
+        <p style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--teal); letter-spacing: 0.12em; margin-bottom: 1rem;">TRACK A · RENEWAL</p>
+        <h3>🔄 기존 물류 구조 개선</h3>
+        <p>현재 운용 중인 프로세스를 진단하고 비용 절감 · 리드타임 단축을 위한 루트 최적화를 제안합니다.</p>
+        <ul style="margin-top: 1rem; font-size: 0.8rem; color: var(--ink-light); list-style: none; display: flex; flex-direction: column; gap: 6px;">
+          <li>→ 비용 구조 재설계</li>
+          <li>→ 루트 최적화</li>
+          <li>→ 3PL 전환 분석</li>
+        </ul>
+      </div>
+      <div class="consult-card">
+        <p style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--teal); letter-spacing: 0.12em; margin-bottom: 1rem;">TRACK B · NEW SETUP</p>
+        <h3>🚀 신규 물류 셋팅 제안</h3>
+        <p>신규 시장 진출 시 등록·법인 명의·인프라부터 리스크를 최소화한 최적의 물류 네트워크를 설계합니다.</p>
+        <ul style="margin-top: 1rem; font-size: 0.8rem; color: var(--ink-light); list-style: none; display: flex; flex-direction: column; gap: 6px;">
+          <li>→ 신규 시장 진단</li>
+          <li>→ 네트워크 설계</li>
+          <li>→ SOP 수립</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 4-Step Process -->
+    <div class="process-steps reveal">
+      <div class="proc-step">
+        <div class="proc-icon">🔍</div>
+        <p class="proc-step-name">Step 01</p>
+        <p class="proc-title">Discover</p>
+        <p class="proc-desc">물류 데이터 분석 및 현재 프로세스 문제 파악</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-icon">📐</div>
+        <p class="proc-step-name">Step 02</p>
+        <p class="proc-title">Design</p>
+        <p class="proc-desc">최적 공급 모드 및 네트워크 시나리오 도출</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-icon">⚙️</div>
+        <p class="proc-step-name">Step 03</p>
+        <p class="proc-title">Deploy</p>
+        <p class="proc-desc">솔루션 적용 및 실측 운영 테스트</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-icon">📈</div>
+        <p class="proc-step-name">Step 04</p>
+        <p class="proc-title">Optimize</p>
+        <p class="proc-desc">KPI 모니터링과 지속적 운영 효율화</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+   WHY ENOMAD
+   ============================================================ -->
+<section id="why">
+  <div class="container">
+    <p class="section-eyebrow">Why ENOMAD KOREA</p>
+    <h2 class="section-title">왜 이노마드 코리아입니까</h2>
+
+    <!-- KPI Band -->
+    <div class="kpi-band reveal">
+      <div class="kpi-item">
+        <div class="kpi-num">7<span class="kpi-unit">Days</span></div>
+        <div class="kpi-label">한국 → 멕시코 리드타임</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-num">3<span class="kpi-unit">Hub</span></div>
+        <div class="kpi-label">CDMX · Miami FTZ · CA 3PL</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-num">100<span class="kpi-unit">+</span></div>
+        <div class="kpi-label">진출 지원 가능 국가</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-num">0<span class="kpi-unit">%</span></div>
+        <div class="kpi-label">FBA 입고 거절률 목표</div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       WHY CARDS — 수정 포인트 ⑧: 차별점 수정
+       ============================================================ -->
+    <div class="why-grid" style="margin-top: var(--s5);">
+      <div class="why-card reveal">
+        <h3>남들이 못하는 중남미를 1주에</h3>
+        <p>멕시코 자체 현지법인 + 직항 특송. 미국 다음의 시장에서 결정적 속도 차이를 만듭니다.</p>
+      </div>
+      <div class="why-card reveal">
+        <h3>규제 까다로운 화장품·식품 전문</h3>
+        <p>FDA·FSVP·현지 라벨링까지 — 가장 거절 빈도 높은 카테고리에서 입고 안정성을 확보합니다.</p>
+      </div>
+      <div class="why-card reveal">
+        <h3>단순 운송 아닌 End-to-End 컨설팅</h3>
+        <p>물류 구조 진단부터 비용 절감 시뮬레이션, 신규 시장 설계까지 — 전 과정을 함께합니다.</p>
+      </div>
+    </div>
+
+    <p style="margin-top: var(--s5); font-size: 1rem; color: var(--ink-mid); border-left: 3px solid var(--teal); padding-left: var(--s3); font-style: italic; line-height: 1.7;">
+      "물류는 단순 운송이 아니라, 고객의 시장 진입 속도를 결정짓는 전략입니다."
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+   CONTACT
+   ============================================================ -->
+<section id="contact" style="background: var(--ink); color: var(--paper);">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <p class="section-eyebrow" style="color: var(--teal);">Contact Us</p>
+        <h2 class="contact-title">
+          북미에서<br>중남미까지,<br>
+          <em>함께 갑니다</em>
+        </h2>
+        <p class="contact-sub">귀사가 어느 단계에 있든 — 이노마드 코리아는 다음 시장까지의 가장 빠른 길을 함께 설계합니다. 지금 바로 무료 물류 상담을 요청하세요.</p>
+      </div>
+
+      <!-- ============================================================
+         CONTACT INFO — 수정 포인트 ⑨: 연락처 수정
+         ============================================================ -->
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="contact-card-icon">📞</div>
+          <div>
+            <p class="contact-card-label">전화 문의 · 평일 09:00–18:00</p>
+            <p class="contact-card-val">070-8657-0105</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">✉️</div>
+          <div>
+            <p class="contact-card-label">이메일 · 24시간 접수</p>
+            <p class="contact-card-val">sel@enomad.co.kr</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">🌐</div>
+          <div>
+            <p class="contact-card-label">웹사이트</p>
+            <p class="contact-card-val">www.enomad.co.kr</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">📍</div>
+          <div>
+            <p class="contact-card-label">본사 오피스</p>
+            <p class="contact-card-val">서울시 강서구 공항대로 347, 8동 1112호</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-line">
+      <span>© 2026 ENOMAD KOREA · All rights reserved</span>
+      <span>www.enomad.co.kr</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+   SCROLL REVEAL SCRIPT
+   ============================================================ -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) el.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
